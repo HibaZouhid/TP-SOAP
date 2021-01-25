@@ -1,29 +1,40 @@
-package EX1WS;
+package EX2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebService;
 
-
-@WebService(endpointInterface="EX1WS.NoteBookService",serviceName=
+@WebService(endpointInterface="EX2WS.NoteBookService",serviceName=
 "NoteBookService", portName = "NoteBookPort")
 public class NotebookServiceImpl implements NotebookService {
 
 	private List<Person> persons = new ArrayList<Person>();
 
 	public NotebookServiceImpl() {
-		persons.add(new Person("test2", "test"));
-		persons.add(new Person("test3", "test"));
-		persons.add(new Person("test1", "test"));
+		Person newPerson = new Person();
+		newPerson.setName("hiba");
+		newPerson.setAddress("CASA");
+		persons.add(newPerson);
+
+		newPerson = new Person();
+		newPerson.setName("zouhid");
+		newPerson.setAddress("Agadir");
+		persons.add(newPerson);
+		
+		newPerson = new Person();
+		newPerson.setName("HIBA");
+		newPerson.setAddress("KESH");
+		persons.add(newPerson);
 	}
 
 	@Override
 	public boolean addPerson(Person p) {
 		System.out.println("addPerson method has been invoked:" + p);
 
-		if (p == null)
+		if (p == null) {
 			throw new NullPointerException("Person is null");
+		}
 
 		try {
 			Thread.sleep(5000);
@@ -45,13 +56,16 @@ public class NotebookServiceImpl implements NotebookService {
 	public Person getPersonAt(String name) {
 		System.out.println("getPersonAt method has been invoked: " + name);
 
-		if (name == null || name.isEmpty())
+		if (name == null || name.isEmpty()) {
 			throw new NullPointerException("Name is null.");
+		}
 
 		for (Person person : persons) {
-			if (name.equals(person.getName()))
+			if (name.equalsIgnoreCase(person.getName())) {
 				return person;
+			}
 		}
+
 		return null;
 	}
 }

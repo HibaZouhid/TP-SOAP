@@ -1,4 +1,4 @@
-package EX1WS;
+package EX1;
 
 public class Person {
 

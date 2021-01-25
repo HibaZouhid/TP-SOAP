@@ -1,4 +1,4 @@
-package EX1WS;
+package EX2;
 
 import javax.xml.ws.Endpoint;
 
